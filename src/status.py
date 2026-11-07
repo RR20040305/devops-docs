@@ -2,9 +2,10 @@
 
 
 def format_status(version: str, deployed: bool) -> str:
-"""Возвращает человекочитаемое состояние публикации.""" state = "deployed" if deployed else "draft"
-return f"{version}: {state}"
+    """Возвращает человекочитаемое состояние публикации."""
+    state = "deployed" if deployed else "draft"
+    return f"{version}: {state}"
 
 
-if   name	 == "  main  ":
-print(format_status("1.0", deployed=True))
+if __name__ == "__main__":
+    print(format_status("1.0", deployed=True))
