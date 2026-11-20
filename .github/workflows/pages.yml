@@ -34,8 +34,15 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install -r requirements-dev.txt
-      - name: Build documentation
+            - name: Build documentation
         run: mkdocs build --strict --site-dir site
+
+      - name: Add build metadata
+        run: |
+          printf 'commit=%s\n' "$GITHUB_SHA" > site/build.txt
+          printf 'run=%s\n' "$GITHUB_RUN_ID" >> site/build.txt
+          date -u '+built_at=%Y-%m-%dT%H:%M:%SZ' >> site/build.txt
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload Pages artifact
